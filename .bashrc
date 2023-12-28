@@ -18,27 +18,35 @@ source ~/.bash/term.sh
 export HN=`hostname -s`
 
 set_win_title () {
-  echo -ne "\033]0; ${USER}@${HOSTNAME}  `dirs` \007"
+  echo -ne "\033]0; ${USER}@${HN}  `dirs` \007"
 }
 
-starship_precmd_user_func="set_win_title"
+function setup_wsl() {
+  export BROWSER=wslview
+  export DOWNLOADS="/mnt/c/Users/icesm/Downloads"
+  #export PROMPT_COMMAND='printf "\e]9;9;%s\e\\" "$(wslpath -m "$PWD")"'
+}
 
-[ -e $HOME/.rvm/scripts/rvm ] && source "$HOME/.rvm/scripts/rvm"
-[ -e ~/.bash/completions.sh ] && source ~/.bash/completions.sh
+function setup_direnv() {
+  eval "$(direnv hook bash)"
+}
 
-#export TERM=xterm-256color
-export BROWSER=wslview
+function setup_starship() {
+  eval "$(starship init bash)"
+  starship_precmd_user_func="set_win_title"
+}
 
-export PROMPT_COMMAND='printf "\e]9;9;%s\e\\" "$(wslpath -m "$PWD")"'
+[ -e $HOME/.rvm/scripts/rvm ]  && source "$HOME/.rvm/scripts/rvm"
+[ -e ~/.bash/completions.sh ]  && source ~/.bash/completions.sh
+[ -e /usr/bin/wslpath ]        && setup_wsl 
+[ -e /usr/bin/direnv ]         && setup_direnv
+[ -e /usr/local/bin/starship ] && setup_starship
+[ -e /usr/bin/keychain ]       && eval `keychain --eval --agents ssh id_rsa -q`
 
-eval "$(direnv hook bash)"
-eval "$(starship init bash)"
+#export PROMPT_COMMAND=${PROMPT_COMMAND:+"$PROMPT_COMMAND; "}'printf "\e]9;9;%s\e\\" "$(wslpath -w "$PWD")"'
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
-
-export PROMPT_COMMAND=${PROMPT_COMMAND:+"$PROMPT_COMMAND; "}'printf "\e]9;9;%s\e\\" "$(wslpath -w "$PWD")"'
-eval `keychain --eval --agents ssh id_rsa -q`
 
 DOCKER_REMOTE_HOST=twibbles.dyn.homenet
 
@@ -54,8 +62,6 @@ function dockerssh() {
   ssh -M -S docker-ctrl-socket -fnNT -L /tmp/docker.sock:/var/run/docker.sock "${DOCKER_REMOTE_HOST}"
   DOCKER_HOST=unix:///tmp/docker.sock eval "$*"
 }
-
-export DOWNLOADS="/mnt/c/Users/icesm/Downloads"
 
 shopt -s direxpand
 
