@@ -19,4 +19,4 @@ alias more=less
 alias ls="exa -F --group-directories-first"
 alias tree="tree -d"
 
-[ -e /usr/bin/btop ] && alias top="btop -lc"
+[ -e /usr/bin/btop ] && alias btop="btop -lc" && alias top="btop"
