@@ -1,3 +1,8 @@
+##
+## This file is managed by yadm - it's stored in git
+##
+##
+
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
