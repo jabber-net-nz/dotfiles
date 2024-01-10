@@ -1,10 +1,4 @@
 syntax on
-call plug#begin()
-" 
-" Starting point for Plugins:
-"
-Plug 'prabirshrestha/vim-lsp'
-Plug 'mattn/vim-lsp-settings'
 "
 set background=dark
 colorscheme vividchalk
@@ -130,24 +124,24 @@ function! Compileandrun()
 	"call cmd
 endfunction
 
-function! PerlDoc()
-	let filename = expand("%")
-	let ftype = &filetype
-	if ftype == ''
-		return
-	elseif ftype == "perl"
-		let cmd = "!clear; echo \"\"; perldoc " . filename
-		execute cmd
-	endif
-endfunction
-
-" hack to stop nasty errors with the perl plugin 
-" under tcsh. it works nice under bash, but barfs
-" when using csh. :( 
-
-if &shell == '/usr/bin/tcsh'
-	let b:did_ftplugin = 1
-endif
-
 execute pathogen#infect()
-set rtp+=/home/leons/.vim/bundle/powerline/powerline/bindings/vim
+
+call plug#begin()
+" 
+" Starting point for Plugins:
+"
+Plug 'prabirshrestha/vim-lsp'
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'mattn/vim-lsp-settings'
+Plug 'hashivim/vim-terraform'
+call plug#end()
+
+if executable('terraform-ls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'terraform-ls',
+        \ 'cmd': {server_info->['terraform-ls', 'serve']},
+        \ 'whitelist': ['terraform','tf'],
+        \ })
+endif
