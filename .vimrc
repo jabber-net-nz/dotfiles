@@ -124,18 +124,17 @@ function! Compileandrun()
 	"call cmd
 endfunction
 
-execute pathogen#infect()
-
-call plug#begin()
 " 
 " Starting point for Plugins:
 "
+call plug#begin()
 Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'mattn/vim-lsp-settings'
 Plug 'hashivim/vim-terraform'
+Plug 'jacoborus/tender.vim'
 call plug#end()
 
 if executable('terraform-ls')
