@@ -1,5 +1,11 @@
 syntax on
-
+call plug#begin()
+" 
+" Starting point for Plugins:
+"
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+"
 set background=dark
 colorscheme vividchalk
 colorscheme elflord
