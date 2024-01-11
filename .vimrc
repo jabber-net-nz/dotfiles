@@ -2,11 +2,12 @@
 " Starting point for Plugins:
 "
 call plug#begin()
-  Plug 'prabirshrestha/vim-lsp'
-  Plug 'prabirshrestha/async.vim'
-  Plug 'prabirshrestha/asyncomplete.vim'
-  Plug 'prabirshrestha/asyncomplete-lsp.vim'
-  Plug 'mattn/vim-lsp-settings'
+"  Plug 'prabirshrestha/vim-lsp'
+"  Plug 'prabirshrestha/async.vim'
+"  Plug 'prabirshrestha/asyncomplete.vim'
+"  Plug 'prabirshrestha/asyncomplete-lsp.vim'
+"  Plug 'mattn/vim-lsp-settings'
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'hashivim/vim-terraform'
   Plug 'jacoborus/tender.vim'
   Plug 'vim-airline/vim-airline'
@@ -14,8 +15,10 @@ call plug#begin()
   Plug 'tpope/vim-fugitive'
 call plug#end()
 
+inoremap <silent><expr> <c-space> coc#refresh()
+
 " Airline Settings
-" let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='tender'
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
@@ -23,7 +26,7 @@ endif
 let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = '☰'
-let g:airline_symbols.maxlinenr = ''
+"let g:airline_symbols.maxlinenr = ''
 
 "let g:airline#extensions#tabline#formatter = 'default'  " f/p/file-name.js
 "let g:airline#extensions#tabline#formatter = 'jsformatter' " path-to/f
