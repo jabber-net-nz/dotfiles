@@ -4,7 +4,18 @@
 #[└─>](bold yellow) '''
 
 format = """
-[\uE0B6](fg:#005f87)$username$hostname[\uE0B0 ](fg:#005f87 bg:#1C4961)[$directory](bg:#1C4961)[\uE0B0](fg:#1C4961 bg:#2F79A1)$git_branch[\uE0B0](fg:#2F79A1 bg:#3A95C7)$git_status[\uE0B0](#3A95C7 bg:#40A9E0)$time[\uE0B0](#40A9E0 bg:none) $all$character"""
+[\uE0B6](fg:#005f87)$username$hostname[\uE0B0 ](fg:#005f87 bg:#1C4961)\
+[$directory](bg:#1C4961)[\uE0B0](fg:#1C4961 bg:#2F79A1)\
+$git_branch[\uE0B0](fg:#2F79A1 bg:#3A95C7)\
+$git_status[\uE0B0](#3A95C7 bg:#40A9E0)\
+$time[\uE0B0](#40A9E0 bg:none)\
+$fill\
+$all\
+$line_break\
+$character\
+"""
+[fill]
+symbol = " "
 
 [character]
 format = "$symbol "
