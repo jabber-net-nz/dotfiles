@@ -2,12 +2,17 @@
 " Starting point for Plugins:
 "
 call plug#begin()
-"  Plug 'prabirshrestha/vim-lsp'
-"  Plug 'prabirshrestha/async.vim'
-"  Plug 'prabirshrestha/asyncomplete.vim'
-"  Plug 'prabirshrestha/asyncomplete-lsp.vim'
-"  Plug 'mattn/vim-lsp-settings'
+" if nodes available, we'll try use coc, as it's way better, everyone loves
+" coc afterall. ;-)
+if executable("node")
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
+else 
+  Plug 'prabirshrestha/vim-lsp'
+  Plug 'prabirshrestha/async.vim'
+  Plug 'prabirshrestha/asyncomplete.vim'
+  Plug 'prabirshrestha/asyncomplete-lsp.vim'
+  Plug 'mattn/vim-lsp-settings'
+endif
   Plug 'hashivim/vim-terraform'
   Plug 'jacoborus/tender.vim'
   Plug 'vim-airline/vim-airline'
@@ -15,7 +20,9 @@ call plug#begin()
   Plug 'tpope/vim-fugitive'
 call plug#end()
 
-inoremap <silent><expr> <c-space> coc#refresh()
+if executable("node")
+  inoremap <silent><expr> <c-space> coc#refresh()
+endif
 
 " Airline Settings
 let g:airline#extensions#tabline#enabled = 1
