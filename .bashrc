@@ -1,7 +1,6 @@
 ##
 ## This file is managed by yadm - it's stored in git
 ##
-##
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
@@ -43,12 +42,10 @@ function setup_starship() {
 
 [ -e $HOME/.rvm/scripts/rvm ]  && source "$HOME/.rvm/scripts/rvm"
 [ -e ~/.bash/completions.sh ]  && source ~/.bash/completions.sh
-[ -e /usr/bin/wslpath ]        && setup_wsl 
-[ -e /usr/bin/direnv ]         && setup_direnv
-[ -e /usr/local/bin/starship ] && setup_starship
-[ -e /usr/bin/keychain ]       && eval `keychain --eval --agents ssh id_rsa -q`
-
-#export PROMPT_COMMAND=${PROMPT_COMMAND:+"$PROMPT_COMMAND; "}'printf "\e]9;9;%s\e\\" "$(wslpath -w "$PWD")"'
+[ -x "$(command -v wslpath)" ] && setup_wsl
+[ -x "$(command -v direnv)"  ] && setup_direnv
+[ -x "$(command -v starship)"  ] && setup_starship
+[ -x "$(command -v keychain)"  ] && eval `keychain --eval --agents ssh id_rsa -q`
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"

@@ -27,7 +27,6 @@ vimcmd_replace_symbol = "[❮](bold purple)"
 vimcmd_replace_one_symbol = "[❮](bold purple)"
 disabled = false
 
-
 [directory]
 style = "bg:#1C4961 fg:white"
 
@@ -58,6 +57,7 @@ disabled = false
 symbol = " "
 format = 'on [$symbol($profile )(\($region\) \[$duration\] )](fg:#6D76E8)'
 style = 'fg:6D76E8'
+disabled=false
 [aws.region_aliases]
 ap-southeast-2 = 'au'
 us-east-1 = 'va'
@@ -206,8 +206,9 @@ symbol = " "
 
 [shlvl]
 disabled = false
+symbol = "↕"
+format = "[$symbol $shlvl]($style) "
 threshold = 1
-symbol = "↕️ "
 
 [shell]
 disabled = true

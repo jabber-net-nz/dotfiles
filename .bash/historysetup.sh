@@ -2,7 +2,6 @@
 
 export HISTCONTROL=ignoredups
 export HISTCONTROL=ignoreboth
-#export HISTTIMEFORMAT="%c "
 export HISTTIMEFORMAT="%F,%T "
 
 shopt -s histappend
