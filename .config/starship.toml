@@ -2,7 +2,7 @@
 #[┌───────────────────>](bold yellow)
 #[│](bold yellow) $username $directory$hostname
 #[└─>](bold yellow) '''
-
+command_timeout=2000
 format = """
 [\uE0B6](fg:#005f87)$username$hostname[\uE0B0 ](fg:#005f87 bg:#1C4961)\
 [$directory](bg:#1C4961)[\uE0B0](fg:#1C4961 bg:#2F79A1)\
