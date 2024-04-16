@@ -6,7 +6,7 @@ call plug#begin()
 " coc afterall. ;-)
 if executable("node")
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
-else 
+else
   Plug 'prabirshrestha/vim-lsp'
   Plug 'prabirshrestha/async.vim'
   Plug 'prabirshrestha/asyncomplete.vim'
