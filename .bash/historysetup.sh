@@ -1,5 +1,6 @@
 # don't put duplicate lines in the history. See bash(1) for more options
-
+export HISTFILESIZE=
+export HISTSIZE=
 export HISTCONTROL=ignoredups
 export HISTCONTROL=ignoreboth
 export HISTTIMEFORMAT="%F,%T "
