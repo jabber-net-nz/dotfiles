@@ -15,5 +15,5 @@ export FACTERLIB="/usr/local/etc/facts:$HOME/.facts"
 
 
 #setenv TERM xterm
-export PATH=$PATH:/home/leons/bin:/home/leons/admin-tools/bin
+export PATH=$PATH:/home/leons/bin:/home/leons/admin-tools/bin:/home/leons/go/bin/
 export PATH="$HOME/.tfenv/bin:$PATH"
