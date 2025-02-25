@@ -18,5 +18,10 @@ alias more=less
 alias tree="tree -d"
 
 [ -e /usr/bin/exa    ] && alias ls="exa -F --group-directories-first"
-[ -e /usr/bin/batcat ] && alias cat='batcat -p'
+# setup some defaults if batcat exists
+if [ -e /usr/bin/batcat ] ; then 
+  alias cat='batcat -p'
+  export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
+  export MANROFFOPT="-c"
+fi
 [ -e /usr/bin/btop   ] && alias btop="btop -lc" && alias top="btop"
