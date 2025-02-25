@@ -25,7 +25,7 @@ if executable("node")
 endif
 
 " Airline Settings
-let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 0
 let g:airline_theme='tender'
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
