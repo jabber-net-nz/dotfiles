@@ -7,6 +7,7 @@ call plug#begin()
 if executable("node")
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
 else
+  Plug 'itchyny/lightline.vim'
   Plug 'prabirshrestha/vim-lsp'
   Plug 'prabirshrestha/async.vim'
   Plug 'prabirshrestha/asyncomplete.vim'
@@ -15,8 +16,6 @@ else
 endif
   Plug 'hashivim/vim-terraform'
   Plug 'jacoborus/tender.vim'
-  Plug 'vim-airline/vim-airline'
-  Plug 'vim-airline/vim-airline-themes'
   Plug 'tpope/vim-fugitive'
 call plug#end()
 
@@ -24,27 +23,14 @@ if executable("node")
   inoremap <silent><expr> <c-space> coc#refresh()
 endif
 
-" Airline Settings
-let g:airline#extensions#tabline#enabled = 0
-let g:airline_theme='tender'
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = '☰'
-"let g:airline_symbols.maxlinenr = ''
+let g:lightline = {
+      \ 'colorscheme': 'PaperColor',
+      \ }
 
-"let g:airline#extensions#tabline#formatter = 'default'  " f/p/file-name.js
-"let g:airline#extensions#tabline#formatter = 'jsformatter' " path-to/f
-"let g:airline#extensions#tabline#formatter = 'unique_tail' " file-name.js
-let g:airline#extensions#tabline#formatter = 'unique_tail_improved' " f/p/file-name.js
-
-"set t_Co=256
+set t_Co=256
 syntax on
 set background=dark
-colorscheme vividchalk
-colorscheme elflord
+colorscheme distinguished
 
 let perl_fold=1
 set nocompatible      " We're running Vim, not Vi!
@@ -66,8 +52,6 @@ set noswapfile
 set hlsearch
 set laststatus=2
 let g:airline_powerline_fonts = 1
-"set statusline=\ %F\ %=\ %y\ (%%%p)\ line\:\ %l\ col:\ %c\
-"let b:did_ftplugin = 1
 " Avoid accidental hits of <F1> while aiming for <Esc>
 map! <F1> <Esc>
 
