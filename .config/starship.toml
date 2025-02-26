@@ -3,19 +3,33 @@
 #[│](bold yellow) $username $directory$hostname
 #[└─>](bold yellow) '''
 command_timeout=2000
+
 format = """
-[\uE0B6](fg:#005f87)$username$hostname[\uE0B0 ](fg:#005f87 bg:#1C4961)\
-[$directory](bg:#1C4961)[\uE0B0](fg:#1C4961 bg:#2F79A1)\
+[\uE0B6]\
+(fg:#005f87)$username$hostname[\uE0B0 ](fg:#005f87 bg:#1C4961)\
+[$directory](bg:#1C4961)\
+[\uE0B0](fg:#1C4961 bg:#2F79A1)\
 $git_branch[\uE0B0](fg:#2F79A1 bg:#3A95C7)\
 $git_status[\uE0B0](#3A95C7 bg:#40A9E0)\
 $time[\uE0B0](#40A9E0 bg:none)\
 $fill\
+${env_var.foo}\
+$direnv\
 $all\
 $line_break\
 $character\
 """
 [fill]
 symbol = " "
+
+[direnv]
+format='[direnv$loaded$allowed]($style) '
+allowed_msg=""
+loaded_msg=""
+denied_msg=":DENIED"
+detect_env_vars=['DIRENV_DIR']
+style="fg:#7fbb6d"
+disabled=false
 
 [character]
 format = "$symbol "
@@ -47,7 +61,7 @@ style = "bg:#40A9E0 fg:white"
 
 
 [username]
-format = "[$user ](bg:#005f87 fg:$style)"
+format = "[ $user ](bg:#005f87 fg:$style)"
 style_root = "red bold"
 style_user = "white bold"
 show_always = true
