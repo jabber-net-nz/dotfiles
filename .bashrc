@@ -9,15 +9,13 @@ shopt -s checkwinsize
 
 # enable color support of ls and also add handy aliases
 if [ "$TERM" != "dumb" ]; then
-    eval "`dircolors -b ~/.dir_colors`"
-    [ -e ~/.dir_colors ] && eval "`dircolors -b ~/.dir_colors`"
+    [ -e ~/.dircolors ] && eval "`dircolors -b ~/.dircolors`"
     alias ls='ls --color=auto'
 fi
 
 source ~/.bash/aliases.sh
 source ~/.bash/env.sh
 source ~/.bash/historysetup.sh
-source ~/.bash/ls_colors.sh
 source ~/.bash/term.sh
 
 export HN=`hostname -s`
