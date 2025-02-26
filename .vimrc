@@ -30,7 +30,7 @@ let g:lightline = {
 set t_Co=256
 syntax on
 set background=dark
-colorscheme distinguished
+colorscheme iceberg
 
 let perl_fold=1
 set nocompatible      " We're running Vim, not Vi!
