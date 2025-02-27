@@ -27,7 +27,6 @@ set_win_title () {
 function setup_wsl() {
   export BROWSER=wslview
   export DOWNLOADS="/mnt/c/Users/icesm/Downloads"
-  #export PROMPT_COMMAND='printf "\e]9;9;%s\e\\" "$(wslpath -m "$PWD")"'
 }
 
 function setup_direnv() {

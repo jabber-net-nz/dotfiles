@@ -18,8 +18,10 @@ alias more=less
 alias tree="tree -d"
 
 [ -e /usr/bin/exa    ] && alias ls="exa -F --group-directories-first"
+[ -e /usr/bin/curlie ] && alias curl="curlie"
 # setup some defaults if batcat exists
 if [ -e /usr/bin/batcat ] ; then 
+  export BAT_THEME="Coldark-Dark"
   alias cat='batcat -p'
   export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
   export MANROFFOPT="-c"
