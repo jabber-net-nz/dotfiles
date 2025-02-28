@@ -1,4 +1,4 @@
-"
+set noshowmode"
 " Starting point for Plugins:
 "
 call plug#begin()
@@ -11,7 +11,11 @@ call plug#begin()
     Plug 'prabirshrestha/asyncomplete-lsp.vim'
     Plug 'mattn/vim-lsp-settings'
   endif
+  Plug 'junegunn/fzf'", { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
   " default plugins
+"  Plug 'pablopunk/native-sidebar.vim'
+  Plug 'preservim/nerdtree'
   Plug 'itchyny/lightline.vim'
   Plug 'hashivim/vim-terraform'
   Plug 'jacoborus/tender.vim'
@@ -36,16 +40,19 @@ set expandtab
 set visualbell                  " don't beep
 set noerrorbells                " don't beep
 set shiftwidth=2
-set showcmd
 set ttyfast
 set shiftround
+set showcmd
 set smarttab
 set incsearch
 set nobackup
 set noswapfile
 set hlsearch
-
+set noshowmode
+" Can never decide if i like mouse support in vim or not
+set mouse=a
 "let g:airline_powerline_fonts = 1
 " Avoid accidental hits of <F1> while aiming for <Esc>
 map! <F1> <Esc>
 set t_Co=256
+

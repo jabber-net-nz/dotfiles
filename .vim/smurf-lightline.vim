@@ -61,7 +61,7 @@ let s:p.inactive.right = [ [ s:foreground, s:background ], [ s:foreground, s:bac
 let s:p.inactive.left = [ [ s:foreground, s:background ], [ s:foreground, s:background ] ]
 let s:p.inactive.middle = [ [ s:foreground, s:background ], ]
 let s:p.insert.left = [ [ s:foreground, s:orange], [ s:statusline_active_fg, s:status ], [ s:statusline_active_fg, s:statusline_active_bg ] ]
-let s:p.command.left = [ [ s:foreground, s:orange], [ s:statusline_active_fg, s:status ], [ s:statusline_active_fg, s:statusline_active_bg ] ]
+let s:p.command.left = [ [ s:foreground, s:purple], [ s:statusline_active_fg, s:status ], [ s:statusline_active_fg, s:statusline_active_bg ] ]
 let s:p.replace.left = [ [ s:background, s:pink ], [s:statusline_active_fg, s:status ], [ s:statusline_active_fg, s:statusline_active_bg ] ]
 let s:p.visual.left = [ [ s:visual_fg, s:visual_bg ], [s:statusline_active_fg, s:status ], [ s:statusline_active_fg, s:statusline_active_bg ] ]
 let s:p.tabline.left = [ [s:tabline_inactive_fg, s:tabline_inactive_bg ]]
@@ -71,10 +71,34 @@ let s:p.tabline.right = copy(s:p.normal.right)
 
 let s:p.normal.error = [ [ s:background, s:error ] ]
 
-let g:lightline#colorscheme#custom#palette = lightline#colorscheme#fill(s:p)
-let g:lightline = {
+" Check if we have lightline available, if we do we'll use it, otherwise 
+" we will fall back to setting up our own status line
+if !empty(glob("~/.vim/plugged/lightline.vim/autoload") )
+  let g:lightline#colorscheme#custom#palette = lightline#colorscheme#fill(s:p)
+  let g:lightline = {
+    \ 'active': {
+    \   'left': [ [ 'mode', 'paste' ],
+    \             [ 'readonly', 'filename', 'modified' ] ],
+    \ },
+    \ 'mode_map': {
+        \ 'n' : 'N',
+        \ 'i' : 'I',
+        \ 'R' : 'R',
+        \ 'v' : 'V',
+        \ 'V' : 'VL',
+        \ "\<C-v>": 'VB',
+        \ 'c' : 'C',
+        \ 's' : 'S',
+        \ 'S' : 'SL',
+        \ "\<C-s>": 'SB',
+        \ 't': 'T',
+        \ },
       \ 'colorscheme': 'custom',
       \ }
+else
+  echo "Nope"
+endif
+
 syntax on
 set noshowmode
 
