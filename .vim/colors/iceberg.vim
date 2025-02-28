@@ -5,6 +5,7 @@
 "
 " File:       iceberg.vim
 " Maintainer: cocopon <cocopon@me.com>
+" Customized: Leon Strong <icesmurf@gmail.com>
 " Modified:   2022-11-16 22:13+0900
 " License:    MIT
 
@@ -156,7 +157,9 @@ if &background == 'light'
   endif
 else
   " hi Normal ctermbg=234 ctermfg=252 guibg=#161821 guifg=#c6c8d1 
-  hi Normal ctermfg=252 guibg=#161821 guifg=#c6c8d1
+  " removed this as we want background set by terminal emulator lets not
+  " override it.
+  hi Normal ctermfg=252 guifg=#c6c8d1
   hi ColorColumn cterm=NONE ctermbg=235 ctermfg=NONE guibg=#1e2132 guifg=NONE
   hi CursorColumn cterm=NONE ctermbg=235 ctermfg=NONE guibg=#1e2132 guifg=NONE
   hi CursorLine cterm=NONE ctermbg=235 ctermfg=NONE guibg=#1e2132 guifg=NONE

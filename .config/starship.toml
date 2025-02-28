@@ -2,18 +2,23 @@
 #[┌───────────────────>](bold yellow)
 #[│](bold yellow) $username $directory$hostname
 #[└─>](bold yellow) '''
-command_timeout=2000
+command_timeout=1000
+palette="smurf"
+add_newline=false
 
 format = """
-[\uE0B6]\
-(fg:#005f87)$username$hostname[\uE0B0 ](fg:#005f87 bg:#1C4961)\
+[ \ue795 | ](bg:yellow fg:foreground_light)\
+$hostname\
+[\uE0B0 ](fg:yellow bg:background)\
+$username\
+[ ](bg:background)\
+[\uE0B0 ](fg:background bg:#1C4961)\
 [$directory](bg:#1C4961)\
 [\uE0B0](fg:#1C4961 bg:#2F79A1)\
 $git_branch[\uE0B0](fg:#2F79A1 bg:#3A95C7)\
 $git_status[\uE0B0](#3A95C7 bg:#40A9E0)\
 $time[\uE0B0](#40A9E0 bg:none)\
 $fill\
-${env_var.foo}\
 $direnv\
 $all\
 $line_break\
@@ -33,13 +38,29 @@ disabled=false
 
 [character]
 format = "$symbol "
-success_symbol = "[❯](fg:#2F79A1)"
+success_symbol = "[❯](fg:orange)"
 error_symbol = "[❯](bold red)"
 vimcmd_symbol = "[❮](bold green)"
 vimcmd_visual_symbol = "[❮](bold yellow)"
 vimcmd_replace_symbol = "[❮](bold purple)"
 vimcmd_replace_one_symbol = "[❮](bold purple)"
 disabled = false
+
+[palettes.smurf]
+foreground_light = '#282a2e'
+foreground_dark  = '#c5c8c6'
+background = '#44475a'
+highlight = '#373b41'
+comment = '#969896'
+red= '#cc6666'
+orange='#f0c674'
+yellow='#b5bd68'
+green='#B5DB68'
+aqua='#8abeb7'
+blue='#81a2be'
+purple='#b294bb'
+pane='#4d5057'
+
 
 [directory]
 style = "bg:#1C4961 fg:white"
@@ -61,9 +82,9 @@ style = "bg:#40A9E0 fg:white"
 
 
 [username]
-format = "[ $user ](bg:#005f87 fg:$style)"
-style_root = "red bold"
-style_user = "white bold"
+format = "[$user](bg:background fg:$style)"
+style_root = "fg:red bold"
+style_user = "fg:foreground_dark bold"
 show_always = true
 disabled = false
 
@@ -123,10 +144,10 @@ symbol = " "
 
 [hostname]
 ssh_symbol = ""
-ssh_only = true
+ssh_only = false
 #ssh_symbol = "🌐 "
 trim_at = "."
-format = "[on ](bg:#005f87)[$hostname ](bg:#005f87 fg:#00afaf)"
+format = "[$hostname ](bg:yellow fg:foreground_light)"
 style = "blue dimmed bold"
 disabled = false
 

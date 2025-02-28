@@ -9,10 +9,12 @@ export GRN="%{\e[00;32m%}"
 export TITLE="%{\e]0;wibble\e007%}"
 export GREP_COLOR="00;36"
 export PERLDOC_PAGER="less -+C -r"
-if [ -e /usr/bin/pygmentize ]; then 
-  alias pygmentize="/usr/bin/pygmentize -f terminal256 -Ostyle=friendly -g"
-  export LESSOPEN="|/usr/bin/pygmentize -f terminal256 -Ostyle=friendly -g %s"
-fi
+#if [ -e /usr/bin/pygmentize ]; then 
+#  alias pygmentize="/usr/bin/pygmentize -f terminal256 -Ostyle=friendly -g"
+#  export LESSOPEN="|/usr/bin/pygmentize -f terminal256 -Ostyle=friendly -g %s"
+#fi
+
+export LESSOPEN="|batcat %s"
 export LESS="-iRFX --shift 5"
 export FACTERLIB="/usr/local/etc/facts:$HOME/.facts"
 
