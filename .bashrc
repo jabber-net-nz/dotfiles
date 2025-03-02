@@ -44,9 +44,32 @@ function setup_starship() {
 [ -e ~/.bash/node_ca.sh ] && source ~/.bash/node_ca.sh
 [ -x "$(command -v wslpath)" ] && setup_wsl
 [ -x "$(command -v direnv)"  ] && setup_direnv
-[ -x "$(command -v starship)"  ] && setup_starship
 [ -x "$(command -v keychain)"  ] && eval `keychain --eval --agents ssh id_rsa -q`
 [ -x "$(command -v fzf)" ] && eval "$(fzf --bash)"
+
+if [ -x "$(command -v starship)"  ] then 
+  setup_starship
+else
+  ## 256 color terminal, make sure you have putty setup
+  ## for it!
+  C_HOST=$(tput setaf 36)
+  C_USER=$(tput setaf 67)
+  C_DIR=$(tput setaf 142)
+  C_IN=$(tput setaf 243)
+  RESET="\033[m"
+
+  # if we have facter, we'll add some info to our prompt so we know
+  # what we're logged into.
+  C_PREFIX=""
+
+  if [ -e /opt/puppetlabs/bin/facter ] ; then
+    OS_FAMILY=$(/opt/puppetlabs/bin/facter os.family)
+    OS_RELEASE=$(/opt/puppetlabs/bin/facter os.release.full)
+    C_PREFIX="\[$C_HOST\][\[$C_USER\]$OS_FAMILY\[$C_HOST\]/\[$C_USER\]$OS_RELEASE\[$C_HOST\]] "
+  fi
+
+  export PS1="$C_PREFIX\[$C_HOST\][\h] \[$C_USER\][\u] \[$C_DIR\]\w\n\[$C_IN\]\$\[$RESET\] "
+fi
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
