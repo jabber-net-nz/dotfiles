@@ -50,7 +50,7 @@ set noswapfile
 set hlsearch
 set noshowmode
 " Can never decide if i like mouse support in vim or not
-set mouse=a
+"set mouse=a
 "let g:airline_powerline_fonts = 1
 " Avoid accidental hits of <F1> while aiming for <Esc>
 map! <F1> <Esc>
