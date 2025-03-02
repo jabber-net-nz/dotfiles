@@ -1,6 +1,6 @@
 # vim: set sw=2 sts=2 ts=2 noexpandtab :
 [include]
-	path = /home/leons/themes.gitconfig
+	path = /usr/share/delta/themes.gitconfig
 
 [color]
 	ui = auto
