@@ -47,7 +47,7 @@ function setup_starship() {
 [ -x "$(command -v keychain)"  ] && eval `keychain --eval --agents ssh id_rsa -q`
 [ -x "$(command -v fzf)" ] && eval "$(fzf --bash)"
 
-if [ -x "$(command -v starship)"  ] then 
+if [ -x "$(command -v starship)"  ] ; then 
   setup_starship
 else
   ## 256 color terminal, make sure you have putty setup
