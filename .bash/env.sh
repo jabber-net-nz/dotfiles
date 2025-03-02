@@ -20,6 +20,6 @@ export FACTERLIB="/usr/local/etc/facts:$HOME/.facts"
 
 
 #setenv TERM xterm
-export PATH=$PATH:/home/leons/bin:/home/leons/admin-tools/bin:/home/leons/go/bin/
+export PATH=$PATH:$HOME/bin:$HOME/.local/bin:$HOME/admin-tools/bin:$HOME/go/bin/
 export PATH="$HOME/.tfenv/bin:$PATH"
 export FZF_DEFAULT_COMMAND="fdfind --regex '!node_modules/*|!.git/*|!.terraform/*|.*'"
