@@ -1,4 +1,5 @@
-set noshowmode"
+set noshowmode
+"
 " Starting point for Plugins:
 "
 call plug#begin()
@@ -42,7 +43,6 @@ set noerrorbells                " don't beep
 set shiftwidth=2
 set ttyfast
 set shiftround
-set showcmd
 set smarttab
 set incsearch
 set nobackup

@@ -96,7 +96,7 @@ if !empty(glob("~/.vim/plugged/lightline.vim/autoload") )
       \ 'colorscheme': 'custom',
       \ }
 else
-  echo "No LightLine Installed"
+  so ~/.vim/status.vim
 endif
 
 syntax on
