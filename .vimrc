@@ -5,12 +5,6 @@ set noshowmode
 call plug#begin()
   if executable("node")
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  else
-    Plug 'prabirshrestha/vim-lsp'
-    Plug 'prabirshrestha/async.vim'
-    Plug 'prabirshrestha/asyncomplete.vim'
-    Plug 'prabirshrestha/asyncomplete-lsp.vim'
-    Plug 'mattn/vim-lsp-settings'
   endif
   Plug 'junegunn/fzf'", { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
