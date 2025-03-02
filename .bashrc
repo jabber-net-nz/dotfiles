@@ -17,6 +17,7 @@ source ~/.bash/aliases.sh
 source ~/.bash/env.sh
 source ~/.bash/historysetup.sh
 source ~/.bash/term.sh
+source ~/.bash/jq_colors.sh
 
 export HN=`hostname -s`
 
