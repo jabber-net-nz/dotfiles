@@ -8,8 +8,6 @@ call plug#begin()
   endif
   Plug 'junegunn/fzf'", { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
-  " default plugins
-"  Plug 'pablopunk/native-sidebar.vim'
   Plug 'preservim/nerdtree'
   Plug 'itchyny/lightline.vim'
   Plug 'hashivim/vim-terraform'
@@ -24,6 +22,8 @@ endif
 " Load custom looks (after plugins load)
 " 
 so ~/.vim/smurf-lightline.vim
+so ~/.vim/smurfscript.vim
+"so ~/.vim/status.vim
 
 let perl_fold=1
 set nocompatible      " We're running Vim, not Vi!
@@ -34,6 +34,7 @@ set tabstop=2
 set expandtab
 set visualbell                  " don't beep
 set noerrorbells                " don't beep
+set belloff=all
 set shiftwidth=2
 set ttyfast
 set shiftround
@@ -50,3 +51,4 @@ set noshowmode
 map! <F1> <Esc>
 set t_Co=256
 
+":au BufAdd,BufNewFile * nested tab sball

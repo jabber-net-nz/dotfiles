@@ -1,6 +1,8 @@
 set t_Co=256
 colorscheme iceberg
 set noshowmode
+set background=dark
+set laststatus=2
 
 set termguicolors " full truecolor support for vim doh!
 
@@ -21,14 +23,19 @@ let s:pink = '#afdf00'
 let s:olive = '#dfaf5f'
 let s:navy = '#df875f'
 let s:aqua = '#3e999f'
+let s:inactive = '#3c4452'
+let s:inactive_fg = '#7d8085'
 
-let s:SetStatusLine         = 'hi StatusLine         cterm=NONE ctermbg=8 guibg=' . s:background . ' ctermfg=8 guifg=' . s:foreground
-let s:SetStatusLineNC       = 'hi StatusLineNC       cterm=NONE ctermbg=0 guibg=' . s:background . ' ctermfg=8 guifg=' . s:foreground
-let s:SetStatusLineSection  = 'hi StatusLineSection  cterm=NONE ctermbg=8 guibg=' . s:yellow     . ' ctermfg=8 guifg=' . s:grey
-let s:SetStatusLineSectionV = 'hi StatusLineSectionV cterm=NONE ctermbg=8 guibg=' . s:blue       . ' ctermfg=8 guifg=' . s:grey
-let s:SetStatusLineSectionI = 'hi StatusLineSectionI cterm=NONE ctermbg=8 guibg=' . s:orange     . ' ctermfg=8 guifg=' . s:grey
-let s:SetStatusLineSectionC = 'hi StatusLineSectionC cterm=NONE ctermbg=8 guibg=' . s:blue       . ' ctermfg=8 guifg=' . s:grey
-let s:SetStatusLineSectionR = 'hi StatusLineSectionR cterm=NONE ctermbg=8 guibg=' . s:red        . ' ctermfg=8 guifg=' . s:grey
+let s:SetStatusLine         = 'hi StatusLine         gui=NONE cterm=NONE ctermbg=8 guibg=' . s:background . ' ctermfg=8 guifg=' . s:foreground
+let s:SetStatusLineNC       = 'hi StatusLineNC       gui=NONE cterm=NONE ctermbg=0 guibg=' . s:background . ' ctermfg=8 guifg=' . s:foreground
+let s:SetStatusLineSection  = 'hi StatusLineSection  gui=NONE cterm=NONE ctermbg=8 guibg=' . s:blue       . ' ctermfg=8 guifg=' . s:grey
+let s:SetStatusLineSectionV = 'hi StatusLineSectionV gui=NONE cterm=NONE ctermbg=8 guibg=' . s:yellow     . ' ctermfg=8 guifg=' . s:grey
+let s:SetStatusLineSectionI = 'hi StatusLineSectionI gui=NONE cterm=NONE ctermbg=8 guibg=' . s:aqua       . ' ctermfg=8 guifg=' . s:grey
+let s:SetStatusLineSectionC = 'hi StatusLineSectionC gui=NONE cterm=NONE ctermbg=8 guibg=' . s:orange     . ' ctermfg=8 guifg=' . s:grey
+let s:SetStatusLineSectionR = 'hi StatusLineSectionR gui=NONE cterm=NONE ctermbg=8 guibg=' . s:red        . ' ctermfg=8 guifg=' . s:grey
+let s:SetStatusInactive     = 'hi StatusInactive     gui=NONE cterm=NONE ctermbg=8 guibg=' . s:inactive        . ' ctermfg=8 guifg=' . s:inactive_fg
+
+
 
 let g:mode_colors = {
       \ 'n':  'StatusLineSection',
@@ -39,13 +46,28 @@ let g:mode_colors = {
       \ 'r':  'StatusLineSectionR'
       \ }
 
-fun! StatusLineRenderer()
-  let hl = '%#' . get(g:mode_colors, tolower(mode()), g:mode_colors.n) . '#'
+let g:mode_string = {
+      \ 'n':  ' N ',
+      \ 'v':  ' V ',
+      \ '^V': ' V ',
+      \ 'i':  ' I ',
+      \ 'c':  ' C ',
+      \ 'r':  ' R: '
+      \ }
 
-  return hl
-        \ . (&modified ? ' + │' : '')
-        \ . ' %{StatusLineFilename()} %#StatusLine#%='
-        \ . hl
+fun! StatusLineRenderer()
+  let mode_hl = '%#' . get(g:mode_colors, tolower(mode()), g:mode_colors.n) . '#' " Default Highlight(n)
+  let def_hl  = '%#StatusLine#'
+  let custom  = '%#StatusTest#'
+  let edit_mode = "none"
+  let edit_mode  = get(g:mode_string, tolower(mode()),'N')
+  return mode_hl
+        \ . edit_mode
+        \ . def_hl
+        \ . ' %{StatusLineFilename()} '
+        \ . def_hl
+        \ . (&modified ? '[modified]' : '')
+        \ . '%#StatusLine#%= '
         \ . ' %l:%c '
 endfun
 
@@ -63,6 +85,7 @@ fun! <SID>StatusLineHighlights()
   execute s:SetStatusLineSectionI
   execute s:SetStatusLineSectionC
   execute s:SetStatusLineSectionR
+  execute s:SetStatusInactive
 endfun
 
 call <SID>StatusLineHighlights()
@@ -71,9 +94,9 @@ call <SID>StatusLineHighlights()
 " ignored on subsequent 'so $MYVIMRC' calls to prevent
 " active buffer statusline from being 'blurred'.
 if has('vim_starting')
-  let &statusline = ' %{StatusLineFilename()}%= %l:%c '
+  "echo s:SetStatusInactive
+  let &statusline = '%#StatusInactive# %{StatusLineFilename()}%=  %l:%c '
 endif
-
 
 augroup vimrc
   au!
@@ -88,4 +111,3 @@ augroup vimrc
   " restore statusline highlights on colorscheme update
   au Colorscheme * call <SID>StatusLineHighlights()
 augroup END
-
