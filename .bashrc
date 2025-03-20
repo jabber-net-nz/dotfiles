@@ -45,7 +45,8 @@ function setup_starship() {
 [ -x "$(command -v wslpath)" ] && setup_wsl
 [ -x "$(command -v direnv)"  ] && setup_direnv
 [ -x "$(command -v keychain)"  ] && eval `keychain --eval --agents ssh id_rsa -q`
-[ -x "$(command -v fzf)" ] && eval "$(fzf --bash)"
+# If fzf is found in our path we'll try load our FZF setup
+[ -x "$(command -v fzf)" ] && source "$HOME/.bash/fzf.sh"
 
 if [ -x "$(command -v starship)"  ] ; then 
   setup_starship

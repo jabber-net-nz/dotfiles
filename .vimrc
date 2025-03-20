@@ -1,4 +1,5 @@
 set noshowmode
+let mapleader=","
 "
 " Starting point for Plugins:
 "
@@ -13,6 +14,9 @@ call plug#begin()
   Plug 'hashivim/vim-terraform'
   Plug 'jacoborus/tender.vim'
   Plug 'tpope/vim-fugitive'
+  Plug 'lambdalisue/nerdfont.vim'
+  " Dockerfile support
+  Plug 'ekalinin/Dockerfile.vim'
 call plug#end()
 
 if executable("node")
@@ -45,10 +49,14 @@ set noswapfile
 set hlsearch
 set noshowmode
 " Can never decide if i like mouse support in vim or not
-"set mouse=a
+set mouse=a
 "let g:airline_powerline_fonts = 1
 " Avoid accidental hits of <F1> while aiming for <Esc>
 map! <F1> <Esc>
+noremap <silent> <C-P> :Files<CR>
+noremap <silent> <leader>f :Files<CR>
+noremap <silent> <leader><tab> :Buffers<CR>
+noremap <silent> <tab> :NERDTreeToggle<CR>
 set t_Co=256
 
 ":au BufAdd,BufNewFile * nested tab sball
