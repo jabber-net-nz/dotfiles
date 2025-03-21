@@ -17,6 +17,7 @@ call plug#begin()
   Plug 'lambdalisue/nerdfont.vim'
   " Dockerfile support
   Plug 'ekalinin/Dockerfile.vim'
+  Plug 'preservim/vimux'
 call plug#end()
 
 if executable("node")
@@ -27,7 +28,6 @@ endif
 " 
 so ~/.vim/smurf-lightline.vim
 so ~/.vim/smurfscript.vim
-"so ~/.vim/status.vim
 
 let perl_fold=1
 set nocompatible      " We're running Vim, not Vi!
@@ -53,6 +53,7 @@ set mouse=a
 "let g:airline_powerline_fonts = 1
 " Avoid accidental hits of <F1> while aiming for <Esc>
 map! <F1> <Esc>
+
 noremap <silent> <C-P> :Files<CR>
 noremap <silent> <leader>f :Files<CR>
 noremap <silent> <leader><tab> :Buffers<CR>

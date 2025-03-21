@@ -1,2 +1,7 @@
 #!/usr/bin/env bash
 echo "Bootstrapping..."
+
+if [ -e /etc/os-release ] && source /etc/os-release
+if [ "$ID" -eq "Ubuntu" ] ; then
+  echo "Ok found an ubuntu type machine"
+fi
