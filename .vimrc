@@ -1,4 +1,9 @@
 set noshowmode
+set t_Co=256
+let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
+set termguicolors
+
 let mapleader=","
 "
 " Starting point for Plugins:
@@ -58,6 +63,6 @@ noremap <silent> <C-P> :Files<CR>
 noremap <silent> <leader>f :Files<CR>
 noremap <silent> <leader><tab> :Buffers<CR>
 noremap <silent> <tab> :NERDTreeToggle<CR>
-set t_Co=256
+
 
 ":au BufAdd,BufNewFile * nested tab sball
