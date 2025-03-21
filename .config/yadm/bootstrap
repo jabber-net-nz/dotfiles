@@ -8,9 +8,13 @@ fi
 
 function install_redhat_like() {
   sudo yum install -y vim tmux 
+  # install starship
+  curl -sS https://starship.rs/install.sh | sh -s -- -f --bin-dir $HOME/bin
+  # install tmux plugin manager
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-  # initial tmux config
-  tmux new-session -s tmux  "~/.tmux/plugins/tpm/tpm && ~/.tmux/plugins/tpm/bin/install_plugins"
+  # install direnv - critical 
+  bin_path=$HOME/bin
+  curl -sfL https://direnv.net/install.sh | bash
   echo "Doing redhat like install"
 }
 
