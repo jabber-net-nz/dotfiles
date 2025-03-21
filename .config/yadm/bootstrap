@@ -7,6 +7,9 @@ if [ -e /etc/os-release ] ; then
 fi
 
 function install_redhat_like() {
+  yum install -y vim tmux 
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+  tmux new-session -s tmux  "~/.tmux/plugins/tpm/tpm && ~/.tmux/plugins/tpm/bin/install_plugins"
   echo "Doing redhat like install"
 }
 
@@ -16,7 +19,7 @@ function install_debian_like() {
 
 echo "id: $ID" 
 case "$ID" in 
-  "almalinux" |"redhat" )
+  "almalinux" |"redhat" | "rhel" )
     install_redhat_like ;;
   "Ubuntu")
     install_debian_like ;;
