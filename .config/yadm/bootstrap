@@ -15,7 +15,14 @@ function install_redhat_like() {
   # install direnv - critical 
   bin_path=$HOME/bin
   curl -sfL https://direnv.net/install.sh | bash
+  # eget 
+  curl -o eget.sh https://zyedidia.github.io/eget.sh
+  bash eget.sh
+  mv ./eget ~/bin
+  # now we have eget, lets install some other bits we'll likely need
+  ~/bin/eget --to=~/bin junegunn/fzf
   echo "Doing redhat like install"
+  source ~/.bashrc
 }
 
 function install_debian_like() {
