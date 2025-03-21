@@ -1,0 +1,10 @@
+if [ -e /etc/os-release ] ; then
+  source /etc/os-release
+fi
+
+case "$ID" in
+  "almalinux" |"redhat" | "rhel" )
+    exit ;;
+  *)
+  exit 1
+esac

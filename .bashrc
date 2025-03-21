@@ -94,3 +94,4 @@ shopt -s direxpand
 
 export DIRENV_LOG_FORMAT=" $(tput setaf 7)$(tput dim)[direnv]$(tput sgr0) $(tput setaf 7)$(tput bold)%s$(tput sgr0)"
 export BW_SESSION="nHjp+j3QaaS8ceffgbhfLQpw9vscA7Rxxu0I9SBOGafnMq6PiwapfAmH4OpntF3jP4INVgy3fQjUYgbcveHeRQ=="
+
