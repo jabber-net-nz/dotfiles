@@ -44,6 +44,13 @@ let g:VimuxCloseOnExit = 1
   endif
 endfunction
 
+:function! smurfscript#SpawnRailsConsoles() 
+   silent keepjumps keepalt execute("! ~/.vim/smurfscript/rails-helpers/create_tmux_panes.sh")
+endfunction
+
 map <c-r> :call smurfscript#RunScript(expand('%'))<CR>
+map <silent> <leader>src :call smurfscript#SpawnRailsConsoles()<CR>
 
 so ~/.vim/smurfscript/handlers.vim
+
+

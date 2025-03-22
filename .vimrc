@@ -22,7 +22,7 @@ call plug#begin()
   Plug 'lambdalisue/nerdfont.vim'
   " Dockerfile support
   Plug 'ekalinin/Dockerfile.vim'
-  Plug 'preservim/vimux'
+"  Plug 'preservim/vimux'
 call plug#end()
 
 if executable("node")
@@ -63,6 +63,5 @@ noremap <silent> <C-P> :Files<CR>
 noremap <silent> <leader>f :Files<CR>
 noremap <silent> <leader><tab> :Buffers<CR>
 noremap <silent> <tab> :NERDTreeToggle<CR>
-
 
 ":au BufAdd,BufNewFile * nested tab sball
