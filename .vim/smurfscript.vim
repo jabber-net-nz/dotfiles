@@ -15,19 +15,10 @@ let g:VimuxUseNearest = 0
 
 noremap <silent> <leader>r :VimuxPromptCommand<CR>
 noremap <silent> <leader>w :Buffers<CR>
+map <silent> we :Buffers<CR>
 noremap <silent> <leader>c :VimuxCloseRunner<CR>
 
 let g:VimuxCloseOnExit = 1
-"let g:ft_handler_vim="smurfscript#ft_runner_vim"
-
-":function! smurfscript#ft_runner_vim(file)
-"  if a:file ==# "smurfscript.vim" 
-"    echo "Can't reload these functions"
-"    return
-"  endif
-"  execute("so " .a:file)
-"  echo "Reloaded file"
-"endfunction
 
 " this function determins if there's a g:ft_handler_<filetype> function
 " if so, it will call the function to handle how to run the filetype.
@@ -44,13 +35,24 @@ let g:VimuxCloseOnExit = 1
   endif
 endfunction
 
+" Simple function to spawn some new tmux tabs
 :function! smurfscript#SpawnRailsConsoles() 
-   silent keepjumps keepalt execute("! ~/.vim/smurfscript/rails-helpers/create_tmux_panes.sh")
+   silent execute("! ~/.vim/smurfscript/rails-helpers/create_tmux_panes.sh")
+   redraw!
+   "
+   " don't add autocommands if they've already been loaded
+   "
+   if !exists("smurf_autocmds")
+     let smurf_autocmds=1 
+     autocmd QuitPre * :! ~/.vim/smurfscript/rails-helpers/leave_tmux.panes.sh
+   endif
 endfunction
 
+
+map <leader>rl :source "~/.vim/smurfscript.vim"<CR>
 map <c-r> :call smurfscript#RunScript(expand('%'))<CR>
 map <silent> <leader>src :call smurfscript#SpawnRailsConsoles()<CR>
 
-so ~/.vim/smurfscript/handlers.vim
+source ~/.vim/smurfscript/handlers.vim
 
 

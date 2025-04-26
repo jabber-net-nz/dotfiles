@@ -27,16 +27,17 @@ function install_redhat_like() {
 
 function install_debian_like() {
   echo "Installing ubuntu like"
+  sudo apt-get install tmux tmux-plugin-manager eza
 }
 
 echo "id: $ID" 
 case "$ID" in 
   "almalinux" |"redhat" | "rhel" )
     install_redhat_like ;;
-  "Ubuntu")
+  "Ubuntu" | "ubuntu" )
     install_debian_like ;;
   *)
-  echo "Unable to determin install type"
+  echo "Unable to determin install type for $ID"
 esac
 
 

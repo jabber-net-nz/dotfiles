@@ -1,14 +1,30 @@
 #
 declare -A rails_panes # Declare our hash to start with.
 
-rails_panes['mine']=$TMUX_PANE
+if [ "$TMUX_PANE " == " " ]; then
+  echo "Not running in tmux doh!"
+  exit 
+fi
+
+# see if we've loaded our rails stuff.
+RAILS_PANES_LOADED=`tmux show -wqv @rails_panes_loaded`
+
+if [ "${RAILS_PANES_LOADED}" == "" ] ; then
+  tmux set -wq @rails_panes_loaded 1
+else
+  echo "Rails panes already active!"
+  exit
+fi
 
 # First we split horizontally, and name our resulting pane
-rails_panes["server"]=`tmux split-window -dPF "#{pane_id}" -l "40%" -h bash`
-rails_panes['console']=`tmux split-window -dPF "#{pane_id}" -v -P -t "${rails_panes['server']}" bash`
+rails_panes["server"]=`tmux split-window -dPF "#{pane_id}" -l "40%" -h rails server`
 
-tmux list-panes -F '{ "active": #{pane_active}, "index": #{pane_index}, "id" : "#{pane_id}" }'
+# set some tmux user variables so we can close stuff down.
 
-#tmux kill-pane -t $RAILS_CONSOLE
-#tmux kill-pane -t $RAILS_SERVER
+tmux set -wq @rails_server_pane_id "${rails_panes['server']}"
 
+rails_panes['console']=`tmux split-window -dPF "#{pane_id}" -v -P -t "${rails_panes['server']}" rails console`
+rails_panes['shell']=`tmux split-window -dPF "#{pane_id}" -v -P -t "${rails_panes['console']}" bash`
+
+tmux set -wq @rails_console_pane_id "${rails_panes['console']}"
+tmux set -wq @rails_shell_pane_id "${rails_panes['shell']}"
