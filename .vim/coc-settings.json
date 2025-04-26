@@ -9,6 +9,11 @@
 			],
 			"initializationOptions": {},
 			"settings": {}
-		}
+		},
+    "ruby": {
+      "command": "ruby-lsp",
+      "rootPatterns": ["Gemfile"],
+      "filetypes": ["rb"]
+    }
 	}
 }

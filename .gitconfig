@@ -35,3 +35,5 @@ default = matching
 
 [credential]
 	helper = store
+[pull]
+	rebase = false

@@ -32,6 +32,7 @@ function install_debian_like() {
   mv ./eget ~/bin
   # now we have eget, lets install some other bits we'll likely need
   ~/bin/eget --to=~/bin junegunn/fzf
+  sudo apt-get install tmux tmux-plugin-manager eza
 }
 
 echo "id: $ID" 
