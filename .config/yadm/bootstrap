@@ -27,16 +27,21 @@ function install_redhat_like() {
 
 function install_debian_like() {
   echo "Installing ubuntu like"
+  curl -o eget.sh https://zyedidia.github.io/eget.sh
+  bash eget.sh
+  mv ./eget ~/bin
+  # now we have eget, lets install some other bits we'll likely need
+  ~/bin/eget --to=~/bin junegunn/fzf
 }
 
 echo "id: $ID" 
 case "$ID" in 
   "almalinux" |"redhat" | "rhel" )
     install_redhat_like ;;
-  "Ubuntu")
+  "Ubuntu" | "ubuntu")
     install_debian_like ;;
   *)
-  echo "Unable to determin install type"
+  echo "Unable to determin install type for $ID"
 esac
 
 
