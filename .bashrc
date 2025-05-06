@@ -64,12 +64,6 @@ else
   # what we're logged into.
   C_PREFIX=""
 
-  if [ -e /opt/puppetlabs/bin/facter ] ; then
-    OS_FAMILY=$(/opt/puppetlabs/bin/facter os.family)
-    OS_RELEASE=$(/opt/puppetlabs/bin/facter os.release.full)
-    C_PREFIX="\[$C_HOST\][\[$C_USER\]$OS_FAMILY\[$C_HOST\]/\[$C_USER\]$OS_RELEASE\[$C_HOST\]] "
-  fi
-
   export PS1="$C_PREFIX\[$C_HOST\][\h] \[$C_USER\][\u] \[$C_DIR\]\w\n\[$C_IN\]\$\[$RESET\] "
 fi
 
