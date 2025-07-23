@@ -2,6 +2,9 @@
 [include]
 	path = /usr/share/delta/themes.gitconfig
 
+#[log]
+#    abbrevCommit = true  # short commits
+#    graphColors = blue,yellow,cyan,magenta,green,red
 [color]
 	ui = auto
 	branch = auto
@@ -9,6 +12,12 @@
 	grep = auto
 	interactive = auto
 	status = auto
+[color "diff"]
+	meta = black bold
+	frag = magenta
+	context = white
+	whitespace = yellow reverse
+	old = red
 
 [core]
   pager = delta

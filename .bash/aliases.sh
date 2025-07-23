@@ -8,6 +8,7 @@ alias vi=vim
 
 alias gzcat=zcat
 alias gzgrep=zgrep
+alias xdg-open=sensible-browser
 
 alias ssh="ssh -C"
 alias grep="egrep --color=never"
