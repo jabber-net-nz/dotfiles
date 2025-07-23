@@ -28,7 +28,8 @@ function install_redhat_like() {
 function install_debian_like() {
   echo "Installing ubuntu like"
   curl -o eget.sh https://zyedidia.github.io/eget.sh
-  bash eget.sh
+  wget https://github.com/zyedidia/eget/releases/download/v1.3.4/eget-1.3.4-linux_amd64.tar.gz -O eget.tgz
+  tar -xzvf eget.tgz eget-1.3.4-linux_amd64/eget --strip-components=1 
   mv ./eget ~/bin
   # now we have eget, lets install some other bits we'll likely need
   ~/bin/eget --to=~/bin junegunn/fzf
