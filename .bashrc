@@ -40,8 +40,8 @@ function setup_starship() {
   starship_precmd_user_func="set_win_title"
 }
 function setup_keychain() {
-  [ -x ~/.ssh/id_ed25519 ] && eval `keychain --eval --agents ssh id_ed25519 -q`
-  [ -x ~/.ssh/id_rsa ] && eval `keychain --eval --agents ssh id_rsa -q`
+  [ -e ~/.ssh/id_ed25519 ] && eval `keychain --eval --agents ssh id_ed25519 -q`
+  [ -e ~/.ssh/id_rsa ] && eval `keychain --eval --agents ssh id_rsa -q`
 }
 
 [ -e $HOME/.rvm/scripts/rvm ]  && source "$HOME/.rvm/scripts/rvm"
