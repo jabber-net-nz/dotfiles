@@ -89,3 +89,7 @@ shopt -s direxpand
 
 export DIRENV_LOG_FORMAT=" $(tput setaf 7)$(tput dim)[direnv]$(tput sgr0) $(tput setaf 7)$(tput bold)%s$(tput sgr0)"
 export YADM_REMOTE=git@github.com:leon-strong/dotfiles.git
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

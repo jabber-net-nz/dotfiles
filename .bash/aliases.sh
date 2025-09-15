@@ -16,7 +16,7 @@ alias grep="egrep --color=never"
 alias stresc='sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]//g"'
 alias pbcopy='xclip -selection clipboard'
 alias more=less
-alias less=cat
+
 alias tree="tree -d"
 
 [ -e /usr/bin/exa    ] && alias ls="exa -F --group-directories-first"
@@ -25,6 +25,7 @@ alias tree="tree -d"
 if [ -e /usr/bin/batcat ] ; then 
 #  export BAT_THEME="Coldark-Dark"
   alias cat='batcat -p'
+  alias less=cat
   export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
   export MANROFFOPT="-c"
 fi
