@@ -39,13 +39,18 @@ function setup_starship() {
   eval "$(starship init bash)"
   starship_precmd_user_func="set_win_title"
 }
+function setup_keychain() {
+  [ -e ~/.ssh/id_ed25519 ] && eval `keychain --eval --agents ssh id_ed25519 -q`
+  [ -e ~/.ssh/id_rsa ] && eval `keychain --eval --agents ssh id_rsa -q`
+}
 
 [ -e $HOME/.rvm/scripts/rvm ]  && source "$HOME/.rvm/scripts/rvm"
 [ -e ~/.bash/completions.sh ]  && source ~/.bash/completions.sh
 [ -e ~/.bash/node_ca.sh ] && source ~/.bash/node_ca.sh
 [ -x "$(command -v wslpath)" ] && setup_wsl
 [ -x "$(command -v direnv)"  ] && setup_direnv
-[ -x "$(command -v keychain)"  ] && eval `keychain --eval --agents ssh id_rsa -q`
+[ -x "$(command -v keychain)"  ] && setup_keychain 
+
 # If fzf is found in our path we'll try load our FZF setup
 [ -x "$(command -v fzf)" ] && source "$HOME/.bash/fzf.sh"
 
