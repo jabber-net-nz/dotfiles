@@ -7,7 +7,7 @@ if [ -e /etc/os-release ] ; then
 fi
 
 function install_redhat_like() {
-  sudo yum install -y vim tmux 
+  sudo yum install -y vim tmux unzip direnv
   # install starship
   curl -sS https://starship.rs/install.sh | sh -s -- -f --bin-dir $HOME/bin
   # install tmux plugin manager
@@ -32,8 +32,13 @@ function install_debian_like() {
   tar -xzvf eget.tgz eget-1.3.4-linux_amd64/eget --strip-components=1 
   mv ./eget ~/bin
   # now we have eget, lets install some other bits we'll likely need
-  ~/bin/eget --to=~/bin junegunn/fzf
-  sudo apt-get install tmux tmux-plugin-manager eza
+  ~/bin/eget --to=~/bin junegunn/fzf 
+  sudo apt-get install tmux tmux-plugin-manager eza cron jq
+  # aws cli installation
+  ( 
+  
+  curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+
 }
 
 echo "id: $ID" 

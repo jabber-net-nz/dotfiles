@@ -33,6 +33,9 @@ call plug#end()
 
 if executable("node")
   inoremap <silent><expr> <c-space> coc#refresh()
+  ":au BufAdd,BufNewFile * nested tab sball
+  inoremap <expr> <Tab> coc#pum#visible() ? coc#pum#next(1) : "\<Tab>"
+  inoremap <expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(1) : "\<S-Tab>"
 endif
 "
 " Load custom looks (after plugins load)
@@ -70,9 +73,6 @@ noremap <silent> <leader>f :Files<CR>
 noremap <silent> <leader><tab> :Buffers<CR>
 noremap <silent> <tab> :NERDTreeToggle<CR>
 
-":au BufAdd,BufNewFile * nested tab sball
-inoremap <expr> <Tab> coc#pum#visible() ? coc#pum#next(1) : "\<Tab>"
-inoremap <expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(1) : "\<S-Tab>"
 
 
 let g:mapleader = "\<Space>"
