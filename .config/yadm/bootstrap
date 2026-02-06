@@ -33,6 +33,7 @@ function install_debian_like() {
   mv ./eget ~/bin
   # now we have eget, lets install some other bits we'll likely need
   ~/bin/eget --to=~/bin junegunn/fzf 
+  ~/bin/eget --to=~/bin 99designs/aws-vault
   sudo apt-get install tmux tmux-plugin-manager eza cron jq
   # aws cli installation
   ( 
