@@ -5,6 +5,10 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+
+# disable ctrl-q as it's bloody annoying and i'm a typo king
+stty -ixon
+bind -r "\C-s"
 shopt -s checkwinsize
 
 # enable color support of ls and also add handy aliases
@@ -50,6 +54,7 @@ function setup_keychain() {
 [ -x "$(command -v wslpath)" ] && setup_wsl
 [ -x "$(command -v direnv)"  ] && setup_direnv
 [ -x "$(command -v keychain)"  ] && setup_keychain 
+[ -e /etc/profile.d/rvm.sh ] && source /etc/profile.d/rvm.sh
 
 # If fzf is found in our path we'll try load our FZF setup
 [ -x "$(command -v fzf)" ] && source "$HOME/.bash/fzf.sh"
@@ -98,3 +103,5 @@ export YADM_REMOTE=git@github.com:leon-strong/dotfiles.git
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+eval "$(rbenv init -)"

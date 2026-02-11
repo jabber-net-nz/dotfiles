@@ -23,3 +23,10 @@ export FACTERLIB="/usr/local/etc/facts:$HOME/.facts"
 export PATH=$PATH:$HOME/bin:$HOME/.local/bin:$HOME/admin-tools/bin:$HOME/go/bin/
 export PATH="$HOME/.tfenv/bin:$PATH"
 export FZF_DEFAULT_COMMAND="fdfind --regex '!node_modules/*|!.git/*|!.terraform/*|.*'"
+export TF_PLUGIN_CACHE_DIR="$HOME/.terraform.d/plugin-cache"
+
+if [ ! -e $TF_PLUGIN_CACHE_DIR ] ; then
+  mkdir -p $TF_PLUGIN_CACHE_DIR
+fi
+
+complete -C '/usr/local/bin/aws_completer' aws
